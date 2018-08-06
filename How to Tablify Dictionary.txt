@@ -1,0 +1,11 @@
+Step 1
+replace tab with #
+
+Step 2
+search for <B* or whatever letter your on. Replace with #B or whatever letter you are on.
+
+Step 3
+Remove initial #
+
+Step 4
+When converting to table adjust the columns to the right amount.

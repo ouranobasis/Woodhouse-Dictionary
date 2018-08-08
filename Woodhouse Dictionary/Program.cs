@@ -12,20 +12,29 @@ namespace WoodhouseDictionary
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+
+
+
             string xmlLocation = @"C:\Users\jpruitt\Source\Repos\Woodhouse-Dictionary\Woodhouse Dictionary\Woodhouse XML\Woodhouse E.xml";
-            using (XmlReader reader = XmlReader.Create(xmlLocation))
+
+            while (true)
             {
-                while (reader.Read())
+                Console.WriteLine("Enter word:");
+                string wordToFind = Console.ReadLine().ToString();
+                using (XmlReader reader = XmlReader.Create(xmlLocation))
                 {
-                    if (reader.IsStartElement() && reader.Name == "English-Entry")
+                    while (reader.Read())
                     {
-                        Console.WriteLine(reader.GetAttribute("id"));
-                        Console.WriteLine("=========================RECOMMENDATIONS===========================");
-                        Console.WriteLine($"{GetGreekSuggestions(reader.ReadSubtree())}\n");
+                        if (reader.IsStartElement() && reader.Name == "English-Entry" && reader.GetAttribute("id") == wordToFind)
+                        {
+                            Console.WriteLine(reader.GetAttribute("id"));
+                            Console.WriteLine("=========================RECOMMENDATIONS===========================");
+                            Console.WriteLine($"{GetGreekSuggestions(reader.ReadSubtree())}\n");
+                        }
                     }
                 }
-            }
                 Console.ReadKey();
+            }
         }
 
         static string GetGreekSuggestions(XmlReader wordReader)
@@ -42,7 +51,7 @@ namespace WoodhouseDictionary
             return word;
         }
 
-        static void GetDictionarySegment()
+        static void GetDictionarySegmentFile()
         {
 
         }
